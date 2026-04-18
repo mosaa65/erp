@@ -1,19 +1,33 @@
-# مخطط الكينونة والعلاقة (Chen ERD)
+# مخطط الكينونة والعلاقة (Chen ERD) المتقدم
 
-يحتوي هذا الملف على المخطط التفصيلي لقاعدة البيانات الخاص بمنصة أمان لإدارة التأمينات باستخدام أسلوب (Chen Notation)، وهو يوضح جميع الكيانات، الخصائص، والعلاقات بشكل مرئي متكامل ويحاكي النمط الكلاسيكي. تم تعزيز هذا المخطط بشمول جميع المفاهيم الأكاديمية مثل (الكيان الضعيف، الصفات المشتقة، الصفات المركبة، الصفات متعددة القيم، والارتباط الكلي).
+يحتوي هذا الملف على المخطط التفصيلي لقاعدة البيانات الخاص بمنصة أمان لإدارة التأمينات باستخدام أسلوب (Chen Notation).
+
+## 🎨 دليل الألوان والرموز الأكاديمية (Legend)
+لفهم المخطط بشكل هندسي واحترافي، تم تطبيق المفاهيم وقواعد البيانات المتقدمة التالية وتمييزها بصرياً:
+
+1. **الكيان القوي (Strong Entity) 🟦:** يعبر عنه بـ **(مستطيل أزرق)**. هو كيان مستقل له مفتاح أساسي خاص به (مثال: العميل، المطالبة).
+2. **الكيان الضعيف (Weak Entity) 🟥:** يعبر عنه بـ **(مستطيل أحمر ذو إطار عريض)**. هو كيان لا يمكن أن يوجد إطلاقاً بدون كيان قوي أساسي يعتمد عليه (مثال: "القسط" لا يمكن أن يتواجد بدون "وثيقة").
+3. **العلاقات (Relationships) 🟧:** يعبر عنها بـ **(معين أصفر/برتقالي)**. لتوضيح نوع وطبيعة الترابط بين الكيانات مثل (1 إلى M).
+4. **العلاقات المُعرّفة (Identifying Relations) 🔴:** يعبر عنها بـ **(معين أحمر غامق ذو إطار عريض)**. وهي العلاقة المسؤولة عن ربط "الكيان الضعيف" بـ "الكيان القوي" الذي يعتمد عليه (مثل علاقة: "يحتوي" بين الوثيقة والقسط).
+5. **الخصائص العادية والأولية ⚪:** أشكال بيضاوية بيضاء/رمادية لتمثيل الحقول (Attributes)، مع تمييز المفتاح الأساسي بكلمة `(PK)` والمفتاح الجزئي للكيان الضعيف بـ `(Partial Key)`.
+6. **الصفات المركبة (Composite Attributes)  انقسام:** صفة تتفرع إلى صفات أخرى فرعية (لو راقبت خصائص العميل، ستجد `الاسم الكامل` يتفرع منه `الاسم الأول` و`اسم العائلة`).
+7. **الصفات المشتقة (Derived Attributes) ➖➖:** صفة مرتبطة بـ **(خط متقطع)**. تعني أنها لا تُخزن كقيمة ثابتة في الداتا بيز بل تُحسب وقتياً (مثال: `مدة الوثيقة` يمكن استنتاجها من تواريخ البدء والانتهاء).
+8. **الصفات متعددة القيم (Multivalued Attributes) 🔲:** صفة محاطة بـ **(إطار أسود عريض)** للدلالة على الإطار المزدوج. وهي تعني أن العميل الواحد قد يمتلك أكثر من قيمة لهذا الحقل (مثال: `الهاتف` يمكن للعميل امتلاك أرقام متعددة).
+
+---
 
 ```mermaid
 flowchart TD
-    %% ======================= تصميم الأشكال =======================
-    classDef entity fill:#a1a1a1,stroke:#666,stroke-width:2px,color:#000,font-weight:bold
-    classDef weak_entity fill:#a1a1a1,stroke:#000,stroke-width:4px,color:#000,font-weight:bold
+    %% ======================= تصميم الألوان الأكاديمية (Legend CSS) =======================
+    classDef entity fill:#3498DB,stroke:#2980B9,stroke-width:2px,color:#FFF,font-weight:bold
+    classDef weak_entity fill:#E74C3C,stroke:#C0392B,stroke-width:4px,color:#FFF,font-weight:bold
     
-    classDef attribute fill:#c2c2c2,stroke:#888,stroke-width:1px,color:#000
-    classDef multi_attribute fill:#c2c2c2,stroke:#000,stroke-width:3px,color:#000
-    classDef derived_attribute fill:#e0e0e0,stroke:#666,stroke-width:1px,color:#000,stroke-dasharray: 5 5
+    classDef attribute fill:#ECF0F1,stroke:#BDC3C7,stroke-width:1px,color:#333
+    classDef multi_attribute fill:#ECF0F1,stroke:#2C3E50,stroke-width:3px,color:#333
+    classDef derived_attribute fill:#ECF0F1,stroke:#95A5A6,stroke-width:2px,color:#333,stroke-dasharray: 6 6
     
-    classDef relation fill:#a1a1a1,stroke:#666,stroke-width:1px,color:#000,font-weight:bold
-    classDef weak_relation fill:#a1a1a1,stroke:#000,stroke-width:3px,color:#000,font-weight:bold
+    classDef relation fill:#F39C12,stroke:#E67E22,stroke-width:2px,color:#FFF,font-weight:bold
+    classDef weak_relation fill:#D35400,stroke:#A04000,stroke-width:4px,color:#FFF,font-weight:bold
 
     %% ======================= الكيانات (قوية وضعيفة) =======================
     E_CLIENT["العميل"]:::entity
