@@ -55,7 +55,7 @@ flowchart TD
     R_13{"يشمل"}:::weak_relation
     R_14{"يتتبع بـ"}:::weak_relation
 
-    %% ======================= الخصائص (مفاتيح، مشتقة، متعددة القيم، ومركبة) =======================
+    %% ======================= الخصائص =======================
     %% العميل
     AL1(["معرف العميل (PK)"]):::attribute
     AL2(["الاسم الكامل"]):::attribute
@@ -164,74 +164,73 @@ flowchart TD
     AU_6(["ملاحظة"]):::attribute
     AU_7(["التاريخ"]):::attribute
 
-    %% ======================= بناء علاقات الكيانات مع مراعاة (الارتباط الكلي والجزئي) =======================
-    %% الارتباط الكلي يُمثل عبر خط سميك (===)
+    %% ======================= بناء علاقات الكيانات =======================
     
-    E_CLIENT ---|"1"| R_1
-    R_1 ---|"M"| E_REQ
+    E_CLIENT -- "1" --- R_1
+    R_1 -- "M" --- E_REQ
 
-    E_CLIENT ---|"1"| R_2
-    R_2 ---|"M"| E_POL  %% ارتباط كلي (الوثيقة تعتمد اعتماد كلي على عميل)
+    E_CLIENT -- "1" --- R_2
+    R_2 -- "M" --- E_POL
 
-    E_CLIENT ---|"1"| R_3
-    R_3 ---|"M"| E_CLAIM  %% ارتباط كلي
+    E_CLIENT -- "1" --- R_3
+    R_3 -- "M" --- E_CLAIM
 
-    E_CLIENT ---|"1"| R_4
-    R_4 ---|"M"| E_PAY
+    E_CLIENT -- "1" --- R_4
+    R_4 -- "M" --- E_PAY
 
-    E_CLIENT ---|"1"| R_5
-    R_5 ---|"M"| E_NOTIF
+    E_CLIENT -- "1" --- R_5
+    R_5 -- "M" --- E_NOTIF
 
-    E_CAT ---|"1"| R_6
-    R_6 ---|"M"| E_TYPE
+    E_CAT -- "1" --- R_6
+    R_6 -- "M" --- E_TYPE
 
-    E_TYPE ---|"1"| R_7
-    R_7 ---|"M"| E_REQ
+    E_TYPE -- "1" --- R_7
+    R_7 -- "M" --- E_REQ
 
-    E_TYPE ---|"1"| R_8
-    R_8 ---|"M"| E_POL
+    E_TYPE -- "1" --- R_8
+    R_8 -- "M" --- E_POL
     
-    E_REQ ---|"1"| R_9
-    R_9 ---|"1"| E_POL
+    E_REQ -- "1" --- R_9
+    R_9 -- "1" --- E_POL
 
-    E_POL ---|"1"| R_10
-    R_10 ---|"M"| E_INST  %% ارتباط كلي بكيان ضعيف
+    E_POL -- "1" --- R_10
+    R_10 -- "M" --- E_INST
 
-    E_INST ---|"1"| R_11
-    R_11 ---|"M"| E_PAY
+    E_INST -- "1" --- R_11
+    R_11 -- "M" --- E_PAY
 
-    E_POL ---|"1"| R_12
-    R_12 ---|"M"| E_CLAIM  %% ارتباط كلي (المطالبة مستحيل توجد بدون وثيقة)
+    E_POL -- "1" --- R_12
+    R_12 -- "M" --- E_CLAIM
 
-    E_CLAIM ---|"1"| R_13
-    R_13 ---|"M"| E_CDOC  %% ارتباط كلي بكيان ضعيف
+    E_CLAIM -- "1" --- R_13
+    R_13 -- "M" --- E_CDOC
 
-    E_CLAIM ---|"1"| R_14
-    R_14 ---|"M"| E_CSTAT  %% ارتباط كلي بكيان ضعيف
+    E_CLAIM -- "1" --- R_14
+    R_14 -- "M" --- E_CSTAT
 
-    E_ROLE ---|"1"| R_15
-    R_15 ---|"M"| E_USER
+    E_ROLE -- "1" --- R_15
+    R_15 -- "M" --- E_USER
 
-    E_USER ---|"1"| R_16
-    R_16 ---|"M"| E_AUDIT
+    E_USER -- "1" --- R_16
+    R_16 -- "M" --- E_AUDIT
 
-    E_USER ---|"1"| R_17
-    R_17 ---|"M"| E_CSTAT
+    E_USER -- "1" --- R_17
+    R_17 -- "M" --- E_CSTAT
 
-    E_USER ---|"1"| R_18
-    R_18 ---|"M"| E_NOTIF
+    E_USER -- "1" --- R_18
+    R_18 -- "M" --- E_NOTIF
 
     %% ======================= بناء الروابط للخصائص =======================
     E_CLIENT --- AL1
     E_CLIENT --- AL2
-    AL2 --- AL2A     %% صفة مركبة (Composite)
-    AL2 --- AL2B     %% صفة مركبة (Composite)
+    AL2 --- AL2A
+    AL2 --- AL2B
     E_CLIENT --- AL3
-    E_CLIENT --- AL4 %% صفة متعددة القيم
+    E_CLIENT --- AL4
     E_CLIENT --- AL5
     E_CLIENT --- AL6
-    AL6 --- AL6A     %% صفة مركبة
-    AL6 --- AL6B     %% صفة مركبة
+    AL6 --- AL6A
+    AL6 --- AL6B
     E_CLIENT --- AL7
 
     E_USER --- AU1
@@ -265,7 +264,7 @@ flowchart TD
     E_POL --- AP3
     E_POL --- AP4
     E_POL --- AP5
-    E_POL -.- AP_DERIVED %% صفة مشتقة (Derived), خط متقطع
+    E_POL -.- AP_DERIVED
     E_POL --- AP6
     E_POL --- AP7
     E_POL --- AP8
