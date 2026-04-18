@@ -45,132 +45,252 @@ flowchart TD
     R_17{"يحدث"}:::relation
     R_18{"يرسل له"}:::relation
 
-    %% ======================= ربط الكيانات بالعلاقات =======================
-    E_CLIENT ---|"1"| R_1 ---|"M"| E_REQ
-    E_CLIENT ---|"1"| R_2 ---|"M"| E_POL
-    E_CLIENT ---|"1"| R_3 ---|"M"| E_CLAIM
-    E_CLIENT ---|"1"| R_4 ---|"M"| E_PAY
-    E_CLIENT ---|"1"| R_5 ---|"M"| E_NOTIF
-
-    E_CAT ---|"1"| R_6 ---|"M"| E_TYPE
-    E_TYPE ---|"1"| R_7 ---|"M"| E_REQ
-    E_TYPE ---|"1"| R_8 ---|"M"| E_POL
-    
-    E_REQ ---|"1"| R_9 ---|"1"| E_POL
-
-    E_POL ---|"1"| R_10 ---|"M"| E_INST
-    E_INST ---|"1"| R_11 ---|"M"| E_PAY
-    E_POL ---|"1"| R_12 ---|"M"| E_CLAIM
-
-    E_CLAIM ---|"1"| R_13 ---|"M"| E_CDOC
-    E_CLAIM ---|"1"| R_14 ---|"M"| E_CSTAT
-
-    E_ROLE ---|"1"| R_15 ---|"M"| E_USER
-    E_USER ---|"1"| R_16 ---|"M"| E_AUDIT
-    E_USER ---|"1"| R_17 ---|"M"| E_CSTAT
-    E_USER ---|"1"| R_18 ---|"M"| E_NOTIF
-
-    %% ======================= خصائص الكيانات =======================
+    %% ======================= الخصائص =======================
     %% العميل
-    E_CLIENT --- AL1(["معرف العميل - PK"]):::attribute
-    E_CLIENT --- AL2(["الاسم الكامل"]):::attribute
-    E_CLIENT --- AL3(["الهوية"]):::attribute
-    E_CLIENT --- AL4(["الهاتف"]):::attribute
-    E_CLIENT --- AL5(["البريد"]):::attribute
-    E_CLIENT --- AL6(["العنوان"]):::attribute
-    E_CLIENT --- AL7(["الحالة"]):::attribute
+    AL1(["معرف العميل - PK"]):::attribute
+    AL2(["الاسم الكامل"]):::attribute
+    AL3(["الهوية"]):::attribute
+    AL4(["الهاتف"]):::attribute
+    AL5(["البريد"]):::attribute
+    AL6(["العنوان"]):::attribute
+    AL7(["الحالة"]):::attribute
 
     %% المستخدم
-    E_USER --- AU1(["معرف المستخدم - PK"]):::attribute
-    E_USER --- AU2(["اسم المستخدم"]):::attribute
-    E_USER --- AU3(["كلمة المرور"]):::attribute
-    E_USER --- AU4(["الاسم"]):::attribute
-    E_USER --- AU5(["الحالة"]):::attribute
+    AU1(["معرف المستخدم - PK"]):::attribute
+    AU2(["اسم المستخدم"]):::attribute
+    AU3(["كلمة المرور"]):::attribute
+    AU4(["الاسم"]):::attribute
+    AU5(["الحالة"]):::attribute
 
     %% الدور
-    E_ROLE --- AR1(["معرف الدور - PK"]):::attribute
-    E_ROLE --- AR2(["اسم الدور"]):::attribute
-    E_ROLE --- AR3(["الوصف"]):::attribute
+    AR1(["معرف الدور - PK"]):::attribute
+    AR2(["اسم الدور"]):::attribute
+    AR3(["الوصف"]):::attribute
 
     %% مجال التأمين
-    E_CAT --- AC1(["معرف المجال - PK"]):::attribute
-    E_CAT --- AC2(["الاسم"]):::attribute
-    E_CAT --- AC3(["الوصف"]):::attribute
+    AC1(["معرف المجال - PK"]):::attribute
+    AC2(["الاسم"]):::attribute
+    AC3(["الوصف"]):::attribute
 
     %% نوع التأمين
-    E_TYPE --- AT1(["معرف النوع - PK"]):::attribute
-    E_TYPE --- AT2(["الاسم"]):::attribute
-    E_TYPE --- AT3(["قواعد التغطية"]):::attribute
-    E_TYPE --- AT4(["التسعير"]):::attribute
-    E_TYPE --- AT5(["التحمل"]):::attribute
+    AT1(["معرف النوع - PK"]):::attribute
+    AT2(["الاسم"]):::attribute
+    AT3(["قواعد التغطية"]):::attribute
+    AT4(["التسعير"]):::attribute
+    AT5(["التحمل"]):::attribute
 
     %% طلب التأمين
-    E_REQ --- AQ1(["رقم الطلب - PK"]):::attribute
-    E_REQ --- AQ2(["التاريخ"]):::attribute
-    E_REQ --- AQ3(["الحالة"]):::attribute
-    E_REQ --- AQ4(["التغطية المقترحة"]):::attribute
-    E_REQ --- AQ5(["القسط المقترح"]):::attribute
+    AQ1(["رقم الطلب - PK"]):::attribute
+    AQ2(["التاريخ"]):::attribute
+    AQ3(["الحالة"]):::attribute
+    AQ4(["التغطية المقترحة"]):::attribute
+    AQ5(["القسط المقترح"]):::attribute
 
     %% الوثيقة
-    E_POL --- AP1(["معرف الوثيقة - PK"]):::attribute
-    E_POL --- AP2(["رقم الوثيقة"]):::attribute
-    E_POL --- AP3(["تاريخ الإصدار"]):::attribute
-    E_POL --- AP4(["تاريخ البدء"]):::attribute
-    E_POL --- AP5(["تاريخ الانتهاء"]):::attribute
-    E_POL --- AP6(["التغطية"]):::attribute
-    E_POL --- AP7(["القسط"]):::attribute
-    E_POL --- AP8(["الحالة"]):::attribute
+    AP1(["معرف الوثيقة - PK"]):::attribute
+    AP2(["رقم الوثيقة"]):::attribute
+    AP3(["تاريخ الإصدار"]):::attribute
+    AP4(["تاريخ البدء"]):::attribute
+    AP5(["تاريخ الانتهاء"]):::attribute
+    AP6(["التغطية"]):::attribute
+    AP7(["القسط"]):::attribute
+    AP8(["الحالة"]):::attribute
 
     %% المطالبة
-    E_CLAIM --- CL1(["معرف المطالبة - PK"]):::attribute
-    E_CLAIM --- CL2(["رقم المطالبة"]):::attribute
-    E_CLAIM --- CL3(["تاريخ الحادث"]):::attribute
-    E_CLAIM --- CL4(["مكان الحادث"]):::attribute
-    E_CLAIM --- CL5(["الوصف"]):::attribute
-    E_CLAIM --- CL6(["الخسارة المقدرة"]):::attribute
-    E_CLAIM --- CL7(["الحالة"]):::attribute
+    CL1(["معرف المطالبة - PK"]):::attribute
+    CL2(["رقم المطالبة"]):::attribute
+    CL3(["تاريخ الحادث"]):::attribute
+    CL4(["مكان الحادث"]):::attribute
+    CL5(["الوصف"]):::attribute
+    CL6(["الخسارة المقدرة"]):::attribute
+    CL7(["الحالة"]):::attribute
 
     %% مرفقات المطالبة
-    E_CDOC --- DO1(["معرف المرفق - PK"]):::attribute
-    E_CDOC --- DO2(["النوع"]):::attribute
-    E_CDOC --- DO3(["الاسم"]):::attribute
-    E_CDOC --- DO4(["المسار"]):::attribute
-    E_CDOC --- DO5(["تاريخ الرفع"]):::attribute
+    DO1(["معرف المرفق - PK"]):::attribute
+    DO2(["النوع"]):::attribute
+    DO3(["الاسم"]):::attribute
+    DO4(["المسار"]):::attribute
+    DO5(["تاريخ الرفع"]):::attribute
 
     %% سجل حالة المطالبة
-    E_CSTAT --- CS1(["معرف السجل - PK"]):::attribute
-    E_CSTAT --- CS2(["الحالة السابقة"]):::attribute
-    E_CSTAT --- CS3(["الحالة الجديدة"]):::attribute
-    E_CSTAT --- CS4(["ملاحظة"]):::attribute
-    E_CSTAT --- CS5(["وقت التعديل"]):::attribute
+    CS1(["معرف السجل - PK"]):::attribute
+    CS2(["الحالة السابقة"]):::attribute
+    CS3(["الحالة الجديدة"]):::attribute
+    CS4(["ملاحظة"]):::attribute
+    CS5(["وقت التعديل"]):::attribute
 
     %% القسط المستحق
-    E_INST --- IN1(["معرف القسط - PK"]):::attribute
-    E_INST --- IN2(["رقم القسط"]):::attribute
-    E_INST --- IN3(["الاستحقاق"]):::attribute
-    E_INST --- IN4(["المبلغ"]):::attribute
-    E_INST --- IN5(["الحالة"]):::attribute
+    IN1(["معرف القسط - PK"]):::attribute
+    IN2(["رقم القسط"]):::attribute
+    IN3(["الاستحقاق"]):::attribute
+    IN4(["المبلغ"]):::attribute
+    IN5(["الحالة"]):::attribute
 
     %% الدفعة
-    E_PAY --- PY1(["معرف الدفعة - PK"]):::attribute
-    E_PAY --- PY2(["المبلغ المسدد"]):::attribute
-    E_PAY --- PY3(["طريقة الدفع"]):::attribute
-    E_PAY --- PY4(["المرجع"]):::attribute
-    E_PAY --- PY5(["التاريخ"]):::attribute
+    PY1(["معرف الدفعة - PK"]):::attribute
+    PY2(["المبلغ المسدد"]):::attribute
+    PY3(["طريقة الدفع"]):::attribute
+    PY4(["المرجع"]):::attribute
+    PY5(["التاريخ"]):::attribute
 
     %% الإشعار
-    E_NOTIF --- NO1(["معرف الإشعار - PK"]):::attribute
-    E_NOTIF --- NO2(["النوع"]):::attribute
-    E_NOTIF --- NO3(["القناة"]):::attribute
-    E_NOTIF --- NO4(["النص"]):::attribute
-    E_NOTIF --- NO5(["الحالة"]):::attribute
-    E_NOTIF --- NO6(["تاريخ الإرسال"]):::attribute
+    NO1(["معرف الإشعار - PK"]):::attribute
+    NO2(["النوع"]):::attribute
+    NO3(["القناة"]):::attribute
+    NO4(["النص"]):::attribute
+    NO5(["الحالة"]):::attribute
+    NO6(["تاريخ الإرسال"]):::attribute
 
     %% سجل العمليات
-    E_AUDIT --- AU_1(["معرف السجل - PK"]):::attribute
-    E_AUDIT --- AU_3(["الإجراء"]):::attribute
-    E_AUDIT --- AU_4(["الكيان"]):::attribute
-    E_AUDIT --- AU_5(["المفتاح/الرقم"]):::attribute
-    E_AUDIT --- AU_6(["ملاحظة"]):::attribute
-    E_AUDIT --- AU_7(["التاريخ"]):::attribute
+    AU_1(["معرف السجل - PK"]):::attribute
+    AU_3(["الإجراء"]):::attribute
+    AU_4(["الكيان"]):::attribute
+    AU_5(["المفتاح/الرقم"]):::attribute
+    AU_6(["ملاحظة"]):::attribute
+    AU_7(["التاريخ"]):::attribute
+
+    %% ======================= ربط الكيانات بالعلاقات =======================
+    E_CLIENT ---|"1"| R_1
+    R_1 ---|"M"| E_REQ
+
+    E_CLIENT ---|"1"| R_2
+    R_2 ---|"M"| E_POL
+
+    E_CLIENT ---|"1"| R_3
+    R_3 ---|"M"| E_CLAIM
+
+    E_CLIENT ---|"1"| R_4
+    R_4 ---|"M"| E_PAY
+
+    E_CLIENT ---|"1"| R_5
+    R_5 ---|"M"| E_NOTIF
+
+    E_CAT ---|"1"| R_6
+    R_6 ---|"M"| E_TYPE
+
+    E_TYPE ---|"1"| R_7
+    R_7 ---|"M"| E_REQ
+
+    E_TYPE ---|"1"| R_8
+    R_8 ---|"M"| E_POL
+    
+    E_REQ ---|"1"| R_9
+    R_9 ---|"1"| E_POL
+
+    E_POL ---|"1"| R_10
+    R_10 ---|"M"| E_INST
+
+    E_INST ---|"1"| R_11
+    R_11 ---|"M"| E_PAY
+
+    E_POL ---|"1"| R_12
+    R_12 ---|"M"| E_CLAIM
+
+    E_CLAIM ---|"1"| R_13
+    R_13 ---|"M"| E_CDOC
+
+    E_CLAIM ---|"1"| R_14
+    R_14 ---|"M"| E_CSTAT
+
+    E_ROLE ---|"1"| R_15
+    R_15 ---|"M"| E_USER
+
+    E_USER ---|"1"| R_16
+    R_16 ---|"M"| E_AUDIT
+
+    E_USER ---|"1"| R_17
+    R_17 ---|"M"| E_CSTAT
+
+    E_USER ---|"1"| R_18
+    R_18 ---|"M"| E_NOTIF
+
+    %% ======================= ربط الكيانات بالخصائص =======================
+    E_CLIENT --- AL1
+    E_CLIENT --- AL2
+    E_CLIENT --- AL3
+    E_CLIENT --- AL4
+    E_CLIENT --- AL5
+    E_CLIENT --- AL6
+    E_CLIENT --- AL7
+
+    E_USER --- AU1
+    E_USER --- AU2
+    E_USER --- AU3
+    E_USER --- AU4
+    E_USER --- AU5
+
+    E_ROLE --- AR1
+    E_ROLE --- AR2
+    E_ROLE --- AR3
+
+    E_CAT --- AC1
+    E_CAT --- AC2
+    E_CAT --- AC3
+
+    E_TYPE --- AT1
+    E_TYPE --- AT2
+    E_TYPE --- AT3
+    E_TYPE --- AT4
+    E_TYPE --- AT5
+
+    E_REQ --- AQ1
+    E_REQ --- AQ2
+    E_REQ --- AQ3
+    E_REQ --- AQ4
+    E_REQ --- AQ5
+
+    E_POL --- AP1
+    E_POL --- AP2
+    E_POL --- AP3
+    E_POL --- AP4
+    E_POL --- AP5
+    E_POL --- AP6
+    E_POL --- AP7
+    E_POL --- AP8
+
+    E_CLAIM --- CL1
+    E_CLAIM --- CL2
+    E_CLAIM --- CL3
+    E_CLAIM --- CL4
+    E_CLAIM --- CL5
+    E_CLAIM --- CL6
+    E_CLAIM --- CL7
+
+    E_CDOC --- DO1
+    E_CDOC --- DO2
+    E_CDOC --- DO3
+    E_CDOC --- DO4
+    E_CDOC --- DO5
+
+    E_CSTAT --- CS1
+    E_CSTAT --- CS2
+    E_CSTAT --- CS3
+    E_CSTAT --- CS4
+    E_CSTAT --- CS5
+
+    E_INST --- IN1
+    E_INST --- IN2
+    E_INST --- IN3
+    E_INST --- IN4
+    E_INST --- IN5
+
+    E_PAY --- PY1
+    E_PAY --- PY2
+    E_PAY --- PY3
+    E_PAY --- PY4
+    E_PAY --- PY5
+
+    E_NOTIF --- NO1
+    E_NOTIF --- NO2
+    E_NOTIF --- NO3
+    E_NOTIF --- NO4
+    E_NOTIF --- NO5
+    E_NOTIF --- NO6
+
+    E_AUDIT --- AU_1
+    E_AUDIT --- AU_3
+    E_AUDIT --- AU_4
+    E_AUDIT --- AU_5
+    E_AUDIT --- AU_6
+    E_AUDIT --- AU_7
 ```
